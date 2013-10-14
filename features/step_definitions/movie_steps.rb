@@ -40,5 +40,7 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  '#movies tr'.length.should == Movie.count
+  Movie.all.each do |movie|
+    assert page.has_content?(/#{movie.title}/m)
+  end
 end
